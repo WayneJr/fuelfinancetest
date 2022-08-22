@@ -19,7 +19,6 @@ import { TransactionModule } from './modules/transaction/transaction.module';
           username: configService.get('DBUSER'),
           password: configService.get('DBPASS'),
           database: configService.get('DBNAME'),
-          // entities: [],
           autoLoadEntities: true,
           synchronize: configService.get('DBSYNC'),
         };

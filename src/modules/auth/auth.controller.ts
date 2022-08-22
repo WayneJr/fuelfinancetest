@@ -2,13 +2,10 @@ import {
   Controller,
   Post,
   UseGuards,
-  Request,
   Body,
-  Logger,
   HttpCode,
   HttpStatus,
 } from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
 import { DoesUserExist } from './guards/doesUserExist.guard';
 import { UserDto } from '../users/dto/user.dto';
 import { AuthService } from './auth.service';
@@ -17,7 +14,6 @@ import { AuthService } from './auth.service';
 export class AuthController {
   constructor(private authService: AuthService) {}
 
-  // @UseGuards(AuthGuard('local'))
   @HttpCode(HttpStatus.CREATED)
   @Post('login')
   async login(@Body() user: { email: string; password: string }) {
