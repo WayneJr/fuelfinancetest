@@ -1,6 +1,8 @@
 ## Description
 Sample CSV parser assessment
 
+Please find the documentation [here](https://documenter.getpostman.com/view/10955476/VUqptda5)
+
 ## Installation
 
 ```bash
