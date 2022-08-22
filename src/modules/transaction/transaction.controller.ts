@@ -12,7 +12,7 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { TransactionService } from './transaction.service';
 import { JwtGuard } from '../auth/guards/jwt.guard';
 
-@Controller('transaction')
+@Controller()
 export class TransactionController {
   constructor(private readonly transactionService: TransactionService) {}
 

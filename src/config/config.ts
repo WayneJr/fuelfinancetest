@@ -1,4 +1,4 @@
-import { PRODUCTION } from 'src/core/constants';
+import { PRODUCTION } from '../core/constants';
 import development from './env-dev';
 import production from './env-prod';
 

@@ -10,17 +10,17 @@ import { DoesUserExist } from './guards/doesUserExist.guard';
 import { UserDto } from '../users/dto/user.dto';
 import { AuthService } from './auth.service';
 
-@Controller('auth')
+@Controller()
 export class AuthController {
   constructor(private authService: AuthService) {}
 
-  @HttpCode(HttpStatus.CREATED)
+  @HttpCode(HttpStatus.OK)
   @Post('login')
   async login(@Body() user: { email: string; password: string }) {
     return await this.authService.login(user);
   }
 
-  @HttpCode(HttpStatus.OK)
+  @HttpCode(HttpStatus.CREATED)
   @UseGuards(DoesUserExist)
   @Post('signup')
   async signUp(@Body() user: UserDto) {
