@@ -26,4 +26,12 @@ $ yarn start:dev
 $ yarn start:prod
 ```
 
+## Testing
+
+Please add your test database credentials to the .env file as with the installation process above. Check the .env.example file for clarity.
+
+```bash
+# integration tests
+$ yarn test:e2e
+```
 

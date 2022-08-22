@@ -2,9 +2,27 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication, HttpStatus } from '@nestjs/common';
 import * as request from 'supertest';
 import { AppModule } from './../src/app.module';
+import { DataSource } from 'typeorm';
+import { Transaction } from '../src/modules/transaction/transaction.entity';
+import { User } from '../src/modules/users/user.entity';
+
+const dataSource = new DataSource({
+  type: 'mysql',
+  host: process.env.DBHOST,
+  port: Number(process.env.DBPORT),
+  username: process.env.DBUSER,
+  password: process.env.DBPASS,
+  database: process.env.DBNAME,
+  entities: [Transaction, User],
+  synchronize: true,
+});
 
 describe('AppController (e2e)', () => {
   let app: INestApplication;
+
+  beforeAll(async () => {
+    await dataSource.initialize();
+  });
 
   beforeEach(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
@@ -54,5 +72,18 @@ describe('AppController (e2e)', () => {
 
   it('/report (GET)', () => {
     return request(app.getHttpServer()).get('/report').expect(HttpStatus.OK);
+  });
+
+  afterAll(async () => {
+    console.log({
+      type: 'mysql',
+      host: process.env.DBHOST,
+      port: process.env.DBPORT,
+      username: process.env.DBUSER,
+      password: process.env.DBPASS,
+      database: process.env.DBNAME,
+      entities: [Transaction, User],
+    });
+    await dataSource.dropDatabase();
   });
 });

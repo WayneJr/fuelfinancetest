@@ -1,4 +1,4 @@
-const development = {
+const test = {
   DBNAME: process.env.DBNAME || 'finance',
   PORT: process.env.PORT || 3000,
   DBUSER: process.env.DBUSER,
@@ -8,4 +8,4 @@ const development = {
   NODE_ENV: process.env.NODE_ENV || 'localhost',
 };
 
-export default development;
+export default test;
