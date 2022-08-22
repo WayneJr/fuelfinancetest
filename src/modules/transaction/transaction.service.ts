@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { CsvParser } from 'nest-csv-parser';
 import { TransactionDto } from './dto/transaction.dto';
 import { Duplex } from 'stream';
@@ -14,8 +14,18 @@ export class TransactionService {
     private readonly csvParser: CsvParser,
   ) {}
 
-  async parseCsvFile(file: Express.Multer.File) {
+  async parseCsvFile(file: Express.Multer.File): Promise<
+    ({
+      date: Date;
+      sum: any;
+      source: any;
+      description: any;
+    } & Transaction)[]
+  > {
     try {
+      if (!file)
+        throw new BadRequestException('Please add a file to be parsed');
+
       const tmp = new Duplex();
       tmp.push(file.buffer);
       tmp.push(null);
@@ -56,5 +66,27 @@ export class TransactionService {
     } catch (err) {
       throw err;
     }
+  }
+
+  async getReports() {
+    const transactions = await this.transactionRepository.query(
+      `SELECT sum(sum) as total, source, MONTHNAME(date) as month, year(date) as year FROM transaction GROUP BY source, month, year`,
+    );
+    const result = transactions.map(
+      (transaction: {
+        total: string;
+        source: string;
+        month: string;
+        year: number;
+      }) => ({
+        source: transaction.source,
+        data: {
+          date: `${transaction.month} ${transaction.year}`,
+          total: transaction.total,
+        },
+      }),
+    );
+
+    return result;
   }
 }

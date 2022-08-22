@@ -1,5 +1,6 @@
 import {
   Controller,
+  Get,
   HttpCode,
   HttpStatus,
   Post,
@@ -13,10 +14,16 @@ import { TransactionService } from './transaction.service';
 export class TransactionController {
   constructor(private readonly transactionServiice: TransactionService) {}
 
-  @HttpCode(HttpStatus.OK)
+  @HttpCode(HttpStatus.CREATED)
   @Post('file')
   @UseInterceptors(FileInterceptor('file'))
   async uploadFile(@UploadedFile() file: Express.Multer.File) {
     return await this.transactionServiice.parseCsvFile(file);
+  }
+
+  @HttpCode(HttpStatus.OK)
+  @Get('report')
+  async getReports() {
+    return await this.transactionServiice.getReports();
   }
 }
