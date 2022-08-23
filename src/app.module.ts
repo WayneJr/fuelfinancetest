@@ -28,6 +28,7 @@ import { TransactionModule } from './modules/transaction/transaction.module';
 
     ConfigModule.forRoot({
       isGlobal: true,
+      envFilePath: `${process.cwd()}/.env.${process.env.NODE_ENV}`,
       load: [config],
     }),
 

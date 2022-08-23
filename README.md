@@ -9,7 +9,7 @@ Please find the documentation [here](https://documenter.getpostman.com/view/1095
 $ yarn install
 ```
 
-Please fill in your mysql database configuration details in a `.env` file and place it in the root directory of the proejct.
+Please fill in your mysql database configuration details in a `.env.dev`  file and place it in the root directory of the proejct. This will be for your development use.
 
 **NOTE**: There is a sample of what your `.env` file should look like in the `.env.example` file.
 
@@ -28,7 +28,7 @@ $ yarn start:prod
 
 ## Testing
 
-Please add your test database credentials to the .env file as with the installation process above. Check the .env.example file for clarity.
+Please fill in your mysql database configuration details in a `.env.dev`  file and place it in the root directory of the proejct. This will be for your test use. Please check the `.env.example` file for clarity
 
 ```bash
 # integration tests

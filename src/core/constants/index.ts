@@ -1,6 +1,6 @@
 // Server
-const PRODUCTION = 'PRODUCTION';
-const DEVELOPMENT = 'DEVELOPMENT';
+const PRODUCTION = 'prod';
+const DEVELOPMENT = 'dev';
 const TEST = 'test';
 
 // Provider consts

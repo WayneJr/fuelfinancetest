@@ -31,7 +31,7 @@ describe('AppController (e2e)', () => {
 
     app = moduleFixture.createNestApplication();
     await app.init();
-  });
+  }, 10000);
 
   const sampleUser = {
     name: 'Daniel',
@@ -319,9 +319,12 @@ describe('AppController (e2e)', () => {
     ]);
   });
 
+  afterEach(async () => {
+    await app.close();
+  });
+
   afterAll(async () => {
     await dataSource.dropDatabase();
     await dataSource.destroy();
-    await app.close();
   });
 });

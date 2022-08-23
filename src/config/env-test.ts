@@ -1,11 +1,12 @@
 const test = {
-  DBNAME: process.env.TEST_DBNAME || 'finance',
-  PORT: process.env.TEST_PORT || 3000,
-  DBUSER: process.env.TEST_DBUSER,
-  DBPASS: process.env.TEST_DBPASS,
-  DBPORT: process.env.TEST_DBPORT,
-  DBHOST: process.env.TEST_DBHOST,
-  NODE_ENV: process.env.TEST_NODE_ENV || 'test',
+  DBNAME: process.env.DBNAME || 'finance',
+  PORT: process.env.PORT || 3000,
+  DBUSER: process.env.DBUSER,
+  DBPASS: process.env.DBPASS,
+  DBPORT: process.env.DBPORT,
+  DBHOST: process.env.DBHOST,
+  DBSYNC: process.env.DBSYNC,
+  // NODE_ENV: process.env.NODE_ENV || 'test',
 };
 
 export default test;
