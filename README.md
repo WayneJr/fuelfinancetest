@@ -28,7 +28,7 @@ $ yarn start:prod
 
 ## Testing
 
-Please fill in your mysql database configuration details in a `.env.dev`  file and place it in the root directory of the proejct. This will be for your test use. Please check the `.env.example` file for clarity
+Please fill in your mysql database configuration details in a `.env.test`  file and place it in the root directory of the proejct. This will be for your test use. Please check the `.env.example` file for clarity
 
 ```bash
 # integration tests
