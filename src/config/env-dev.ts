@@ -5,7 +5,7 @@ const development = {
   DBPASS: process.env.DBPASS,
   DBPORT: process.env.DBPORT,
   DBHOST: process.env.DBHOST,
-  NODE_ENV: process.env.NODE_ENV || 'localhost',
+  NODE_ENV: process.env.NODE_ENV || 'DEVELOPMENT',
 };
 
 export default development;
