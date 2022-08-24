@@ -217,106 +217,70 @@ describe('AppController (e2e)', () => {
     const response = await request(app.getHttpServer()).get('/report');
     expect(response.statusCode).toEqual(HttpStatus.OK);
     expect(response.body).toBeDefined();
-    expect(response.body).toEqual([
-      {
-        source: 'custom-source',
-        data: {
+    expect(response.body).toEqual({
+      'custom-source': [
+        {
           date: 'April 2022',
           total: '800',
         },
-      },
-      {
-        source: 'custom-source',
-        data: {
+        {
           date: 'February 2022',
           total: '450',
         },
-      },
-      {
-        source: 'custom-source',
-        data: {
+        {
           date: 'March 2022',
           total: '200',
         },
-      },
-      {
-        source: 'income',
-        data: {
+      ],
+      income: [
+        {
           date: 'April 2022',
           total: '2000',
         },
-      },
-      {
-        source: 'income',
-        data: {
+        {
           date: 'February 2022',
           total: '15',
         },
-      },
-      {
-        source: 'income',
-        data: {
+        {
           date: 'January 2021',
           total: '500',
         },
-      },
-      {
-        source: 'income',
-        data: {
+        {
           date: 'January 2022',
           total: '700',
         },
-      },
-      {
-        source: 'income',
-        data: {
+        {
           date: 'March 2022',
           total: '1900',
         },
-      },
-      {
-        source: 'income',
-        data: {
+        {
           date: 'May 2022',
           total: '800',
         },
-      },
-      {
-        source: 'other',
-        data: {
+      ],
+      other: [
+        {
           date: 'April 2022',
           total: '2110',
         },
-      },
-      {
-        source: 'other',
-        data: {
+        {
           date: 'February 2022',
           total: '600',
         },
-      },
-      {
-        source: 'other',
-        data: {
+        {
           date: 'January 2022',
           total: '1200',
         },
-      },
-      {
-        source: 'other',
-        data: {
+        {
           date: 'March 2022',
           total: '711',
         },
-      },
-      {
-        source: 'other',
-        data: {
+        {
           date: 'May 2022',
           total: '1500',
         },
-      },
-    ]);
+      ],
+    });
   });
 
   afterEach(async () => {

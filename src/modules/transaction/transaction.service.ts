@@ -72,20 +72,26 @@ export class TransactionService {
     const transactions = await this.transactionRepository.query(
       `SELECT sum(sum) as total, source, MONTHNAME(date) as month, year(date) as year FROM transaction GROUP BY source, month, year`,
     );
-    const result = transactions.map(
-      (transaction: {
-        total: string;
-        source: string;
-        month: string;
-        year: number;
-      }) => ({
-        source: transaction.source,
-        data: {
-          date: `${transaction.month} ${transaction.year}`,
-          total: transaction.total,
-        },
-      }),
-    );
+    const result = transactions
+      .map(
+        (transaction: {
+          total: string;
+          source: string;
+          month: string;
+          year: number;
+        }) => ({
+          source: transaction.source,
+          data: {
+            date: `${transaction.month} ${transaction.year}`,
+            total: transaction.total,
+          },
+        }),
+      )
+      .reduce((current, { source, data }) => {
+        current[source] = current[source] || [];
+        current[source].push(data);
+        return current;
+      }, {});
 
     return result;
   }
